@@ -44,6 +44,14 @@ class HttpCommands(HttpMessages[HttpMessage, CmdId]):
     #####################################################################################################
     #                         HTTP GET JSON COMMANDS
     #####################################################################################################
+    @http_get_json_command(endpoint="gopro/media/delete/file", arguments=["path"])
+    async def delete_media_file(self, *, file: str) -> GoProResp:
+        """Delete a file on the camera.
+
+        Returns:
+            GoProResp: Empty object
+        """
+        return {"path": f"{file}"}  # type: ignore
 
     @http_get_json_command(endpoint="gopro/camera/digital_zoom", arguments=["percent"])
     async def set_digital_zoom(self, *, percent: int) -> GoProResp[None]:
